@@ -16,25 +16,19 @@
 
 <body>
     <div class="container">
-        <!-- title section -->
-        <div class="jumbotron intro-jumbo">
-            <div class="container">
-                <h1 class="display-4">Trivia Time</h1>
-                <p class="lead">This is a fun trivia game focused on questions around trees, can you get them all right?</p>
-                <button type="button" class="btn btn-primary btn-md btn-start">Start Game</button>
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- title section -->
+                <div class="jumbotron game-jumbo">
+                    <!-- <div class="container"> -->
+                        <div class="timer"></div>
+                        <h1 class="display-4 prompt">Trivia Time</h1>
+                        <p class="lead answer-display">This is a fun trivia game focused on questions around trees, can you get them all right?</p>
+                        <button type="button" class="btn btn-primary btn-md btn-start">Start Game</button>
+                    <!-- </div> -->
+                </div>
             </div>
         </div>
-
-        <!-- question section -->
-        <div class="jumbotron">
-            <div class="container"></div>
-                <div class="timer"></div>
-                <h1 class="display-4 question"></h1>
-                <p class="lead answer-display"></p>
-            </div>
-        </div>
-
-
     </div>
 
     <script src="./assets/javascript/app.js" async defer></script>

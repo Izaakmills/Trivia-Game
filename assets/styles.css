@@ -1,11 +1,16 @@
 
 /* Trivia Game */
-
-.container{
-    text-align: center;
+*{
+    margin:0;
+    padding:0;
 }
-
-.jumbotron{
-    padding-top:25px;
-
+html, body{
+    height:100%;
+}
+.container{
+    display:flex;
+    align-content: center;
+    align-items: center;
+    height:100%;
+    text-align:center;
 }

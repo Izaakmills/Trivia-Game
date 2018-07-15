@@ -35,36 +35,42 @@ var rightAnswerCounter = 0;
 var wrongAnswerCounter = 0;
 var question = 0;
 var questionCounter = 0;
+var timerRunning = false;
+// timer object
+var timer = {
+    start : function() {
+        if (!timerRunning) {
+            timerRunning = true
+            timerID= setInterval(timer.count,1000)
+        }
+    }
+
+}
 
 // function for the timer that counts down once the button is clicked, then if user doesnt answer in time they get it wrong and the next question is shown
-function countDown(){
-    var timer = 120;
-}
+
 
 function displayQuestion(questionNumber){
     console.log(questionNumber)
-    $(".answer-display").append("<h2>"+questions[questionNumber].question+"</h2>")
-    $(".answer-display").append("<p><button type='button' class='btn btn-primary btn-md btn-answer'>"+questions[questionNumber].option1+"</button></p>")
+    $(".prompt").html("<h2>"+questions[questionNumber].question+"</h2>")
+    $(".answer-display").html("<p><button type='button' class='btn btn-primary btn-md btn-answer'>"+questions[questionNumber].option1+"</button></p>")
     $(".answer-display").append("<p><button type='button' class='btn btn-primary btn-md btn-answer'>"+questions[questionNumber].option2+"</button></p>")
     $(".answer-display").append("<p><button type='button' class='btn btn-primary btn-md btn-answer'>"+questions[questionNumber].answer+"</button></p>")
 }
 
-
-$(".btn-answer").click(function(){
-    console.log(this)
-});
 // need screen congratulating user if they get it right
-function userAnswer(guess){
-    $(".btn-answer").click(function(){
+$(".btn-answer").click(userAnswer());
+
+function userAnswer(){
         console.log(this)
-    });
+        console.log(this)
 };
 
 
 // hides intro jumbotron while game is in progress
 function hideIntro(){
-    $(".intro-jumbo").css("display","none")
-
+    $(".btn-start").css("display","None")
+    // $(".intro-jumbo").css("display","none")
 }
 
 // button click initiates gameplay
@@ -77,7 +83,7 @@ $(".btn-start").click(function(){
     displayQuestion(questionCounter)
 });
 
-$(".btn").click(function(){
+$(".btn-answer").click(function(){
     console.log(this)
     // userAnswer(guess);
 })
