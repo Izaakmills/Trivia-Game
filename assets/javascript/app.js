@@ -34,38 +34,52 @@ var questions = {
 var rightAnswerCounter = 0;
 var wrongAnswerCounter = 0;
 var question = 0;
+var questionCounter = 0;
 
 // function for the timer that counts down once the button is clicked, then if user doesnt answer in time they get it wrong and the next question is shown
 function countDown(){
     var timer = 120;
-
-
 }
 
 function displayQuestion(questionNumber){
     console.log(questionNumber)
-    $(".answer-display").append("<div class='answers'>" + questions[questionNumber].question+"</div>")
-    $(".answer-display").append("<div class='answers'>" + questions[questionNumber].answer+"</div>")
-    $(".answer-display").append("<div class='answers'>" + questions[questionNumber].option1+"</div>")
-    $(".answer-display").append("<div class='answers'>" + questions[questionNumber].option2+"</div>")
+    $(".answer-display").append("<h2>"+questions[questionNumber].question+"</h2>")
+    $(".answer-display").append("<p><button type='button' class='btn btn-primary btn-md btn-answer'>"+questions[questionNumber].option1+"</button></p>")
+    $(".answer-display").append("<p><button type='button' class='btn btn-primary btn-md btn-answer'>"+questions[questionNumber].option2+"</button></p>")
+    $(".answer-display").append("<p><button type='button' class='btn btn-primary btn-md btn-answer'>"+questions[questionNumber].answer+"</button></p>")
 }
 
+
+$(".btn-answer").click(function(){
+    console.log(this)
+});
 // need screen congratulating user if they get it right
 function userAnswer(guess){
-    if (guess == correct-answer){
-        $(".answer-display").empty()
-    }
+    $(".btn-answer").click(function(){
+        console.log(this)
+    });
+};
+
+
+// hides intro jumbotron while game is in progress
+function hideIntro(){
+    $(".intro-jumbo").css("display","none")
+
 }
 
-
-$(".btn").click(function(){
-    console.log(questions["1"].answer)
-    displayQuestion("1")
+// button click initiates gameplay
+$(".btn-start").click(function(){
+    gameOn = true
+    hideIntro()
+    questionCounter = 1;
+    parseInt(questionCounter)
+    console.log(questions[questionCounter].answer)
+    displayQuestion(questionCounter)
 });
 
 $(".btn").click(function(){
     console.log(this)
-    userAnswer(guess);
+    // userAnswer(guess);
 })
 
 
