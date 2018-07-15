@@ -64,7 +64,8 @@ var timer = {
         }
     }
 }
-
+var num= Object.keys(questions)
+var numQuestions = num.length
 $(window).on("load", function () {
 
     // start button click initiates gameplay
@@ -77,10 +78,7 @@ $(window).on("load", function () {
         // function for the timer that counts down once the button is clicked, then if user doesnt answer in time they get it wrong and the next question is shown
 
         function displayQuestion(questionNumber) {
-            var num = Object.keys(questions)
-            var num1 = num.length
-            console.log(num.length)
-            if (questionNumber < num1){
+            if (questionNumber < numQuestions){
                 answer = questions[questionNumber].correctAnswer
                 $(".prompt").html("<h2>" + questions[questionNumber].question + "</h2>")
                 $(".answer-display").html("<p><button type='button' class='btn btn-primary btn-lg' id='a'>" + questions[questionNumber].answers.a + "</button></p>")
@@ -91,14 +89,11 @@ $(window).on("load", function () {
                 finalScreen()
             }
         };
-
-        // need screen congratulating user if they get it right
-
-
         // document.getElementById("#a/b/c"),onclick = userAnswer(this)
         $(".btn").click(function(){
             guess = this.id
             switch  (guess) {
+
             case "a":
                 userAnswer("a")
                 break;
@@ -117,12 +112,13 @@ $(window).on("load", function () {
                 if (gameOn) {
                     if (guess == answer) {
                         numCorrect = numCorrect + 1
-                        window.setTimeout(showResult("won"),5000)
+                        setTimeout(showResult("won"),5000)
                     }
                     else {
-                        window.setTimeout(showResult("lost"),5000)
+                        setTimeout(showResult("lost"),5000)
                     }
-                    displayQuestion(++questionCounter)
+                    questionCounter = questionCounter + 1;
+                    displayQuestion(questionCounter)
                 }
         };
 
@@ -133,14 +129,14 @@ $(window).on("load", function () {
 
         // timeout function to show before moving to next question
         function showResult(result){
-            $(".prompt").html("<div class='alert alert-success' role='alert'> 'You '+ result :(</div>")
+            $(".prompt").html("<div class='alert alert-success' role='alert'> You "+ result+"(</div>")
         }
 
         function finalScreen(){
             $(".prompt").html("<h2> You have completed the tree quiz good job</h2>")
-            $(".answer-display").html("<p><button type='button' class='btn btn-primary btn-lg' id='a'>" + questions[questionNumber].answers.a + "</button></p>")
-            $(".answer-display").append("<p><button type='button' class='btn btn-primary btn-lg'id='b'>" + questions[questionNumber].answers.b + "</button></p>")
-            $(".answer-display").append("<p><button type='button' class='btn btn-primary btn-lg' id='c'>" + questions[questionNumber].answers.c + "</button></p>")
+            $(".answer-display").html("<p> Correct Answers:" + numCorrect+"</p>")
+            $(".answer-display").append("<p>/p>")
+            $(".answer-display").append("<p></p>")
         }
     });//btn start closing tag
 
