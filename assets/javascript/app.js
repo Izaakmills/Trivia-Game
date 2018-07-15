@@ -1,41 +1,52 @@
 
-var questions = {
-    1 : {
-        question:"How many gallons of water does a tree drink a day?",
-        answer:"2,000 liters",
-        option1:"1,500 liters",
-        option2:"1,000 liters"
+var questions = [
+    {   
+        question: "How many gallons of water does a tree drink a day?",
+        answers: { a:"2,000 liters",
+        b:"1,500 liters",
+        c:"1,000 liters"
+        },
+        correctAnswer: "a",
     },
-    2 : {
-        question:"How many pounds of carbon can a tree absorb in a year?",
-        answer:"50 pounds",
-        option1:"48 pounds",
-        option2:"45 pounds"
+    {   
+        question: "How many pounds of carbon can a tree absorb in a year?",
+        answers: { a:"50 pounds",
+        b:"115 pounds",
+        c:"48 pounds"
+        },
+        correctAnswer: "a",
     },
-    3 : {
-        question:"Where are the oldest living trees thought to live?",
-        answer:"Russia",
-        option1:"Greece",
-        option2:"California"
+    {   
+        question: "Where are the oldest living trees thought to live?",
+        answers: { a:"California",
+        b:"Russia",
+        c:"Argentina"
+        },
+        correctAnswer: "a",
     },
-    4 : {
-        question:"What is the largest species of tree in the world?",
-        answer:"Pine",
-        option1:"Magnolia",
-        option2:"Sequoia"
+    {   
+        question: "What is the largest species of tree in the world?",
+        answers: { a:"Sequia",
+        b:"Magnolia",
+        c:"White Pine"
+        },
+        correctAnswer: "a",
     },
-    5 : {
-        question:"How is a trees age determined?",
-        answer:" by the number of leaves on the top branch",
-        option1:"by the number of rings from the middle",
-        option2:"by how many feet tall the tree is"
+    {   
+        question: "How is a trees age determined?",
+        answers: { a:"by the number of leaves on the top branch",
+        b:"by the number of rings from the middle",
+        c:"by how many feet tall the tree is"
+        },
+        correctAnswer: "a",
     },
-};
+];
 var rightAnswerCounter = 0;
 var wrongAnswerCounter = 0;
 var question = 0;
 var questionCounter = 0;
 var timerRunning = false;
+var answer;
 // timer object
 var timer = {
     start : function() {
@@ -52,40 +63,35 @@ var timer = {
 
 function displayQuestion(questionNumber){
     console.log(questionNumber)
+    questionCounter ++; // loads next question into variable for later load
     $(".prompt").html("<h2>"+questions[questionNumber].question+"</h2>")
-    $(".answer-display").html("<p><button type='button' class='btn btn-primary btn-md btn-answer'>"+questions[questionNumber].option1+"</button></p>")
-    $(".answer-display").append("<p><button type='button' class='btn btn-primary btn-md btn-answer'>"+questions[questionNumber].option2+"</button></p>")
-    $(".answer-display").append("<p><button type='button' class='btn btn-primary btn-md btn-answer'>"+questions[questionNumber].answer+"</button></p>")
-}
+    $(".answer-display").html("<p><button type='button' class='btn btn-primary btn-md' id='a'>"+questions[questionNumber].answers.a+"</button></p>")
+    $(".answer-display").append("<p><button type='button' class='btn btn-primary btn-md'id='b'>"+questions[questionNumber].answers.b+"</button></p>")
+    $(".answer-display").append("<p><button type='button' class='btn btn-primary btn-md' id='c'>"+questions[questionNumber].answers.c+"</button></p>")
+};
 
+console.log(questionCounter)
 // need screen congratulating user if they get it right
-$(".btn-answer").click(userAnswer());
+var show = $("#btn-md").attr('id');
 
+// document.getElementById("#btn"),onclick = userAnswer(this)
 function userAnswer(){
-        console.log(this)
-        console.log(this)
+   console.log(this.id)
 };
 
 
 // hides intro jumbotron while game is in progress
 function hideIntro(){
     $(".btn-start").css("display","None")
-    // $(".intro-jumbo").css("display","none")
 }
 
 // button click initiates gameplay
 $(".btn-start").click(function(){
     gameOn = true
     hideIntro()
-    questionCounter = 1;
-    parseInt(questionCounter)
-    console.log(questions[questionCounter].answer)
+    answer = questions[questionCounter].correctAnswer
     displayQuestion(questionCounter)
 });
 
-$(".btn-answer").click(function(){
-    console.log(this)
-    // userAnswer(guess);
-})
 
 
