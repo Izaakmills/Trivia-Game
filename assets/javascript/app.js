@@ -112,10 +112,10 @@ $(window).on("load", function () {
                 if (gameOn) {
                     if (guess == answer) {
                         numCorrect = numCorrect + 1
-                        setTimeout(showResult("won"),5000)
+                        showResult("Awesome, you won!")
                     }
                     else {
-                        setTimeout(showResult("lost"),5000)
+                        showResult("Drats, you lost...")
                     }
                     questionCounter = questionCounter + 1;
                     displayQuestion(questionCounter)
@@ -129,7 +129,7 @@ $(window).on("load", function () {
 
         // timeout function to show before moving to next question
         function showResult(result){
-            $(".prompt").html("<div class='alert alert-success' role='alert'> You "+ result+"(</div>")
+                $(".prompt").html("<div class='alert alert-info' role='alert'>"+ result+"</div>")
         }
 
         function finalScreen(){
