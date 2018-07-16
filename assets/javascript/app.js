@@ -108,17 +108,16 @@ $(window).on("load", function () {
             }
         });
 
+        // calculates whether or not the user guessed correctly
         function userAnswer(guess) {
                 if (gameOn) {
                     if (guess == answer) {
                         numCorrect = numCorrect + 1
-                        showResult("Awesome, you won!")
+                        showResult("Awesome, you guessed right!")
                     }
                     else {
-                        showResult("Drats, you lost...")
+                        showResult("Drats, wrong answer...")
                     }
-                    questionCounter = questionCounter + 1;
-                    displayQuestion(questionCounter)
                 }
         };
 
@@ -127,15 +126,20 @@ $(window).on("load", function () {
             $(".btn-start").css("display", "None")
         }
 
-        // timeout function to show before moving to next question
+        // shows user whether or not they get the question right
         function showResult(result){
-                $(".prompt").html("<div class='alert alert-info' role='alert'>"+ result+"</div>")
-        }
-
+                $(".answer-display").empty()
+                $(".prompt").html("<div>"+ result+"</div>")
+                $(".btn-start").html("<p><button type='button' class='btn btn-primary btn-lg btn-start'>Next Question</button></p>")
+                questionCounter = questionCounter + 1;
+                $(".btn-start").css("display","");
+            }
+        
         function finalScreen(){
+            percentage = numCorrect / numQuestions
             $(".prompt").html("<h2> You have completed the tree quiz good job</h2>")
-            $(".answer-display").html("<p> Correct Answers:" + numCorrect+"</p>")
-            $(".answer-display").append("<p>/p>")
+            $(".answer-display").html("<p> Correct Answers: " + numCorrect+"</p>")
+            $(".answer-display").append("<p> Your winning percentage "+ percentage+"</p>")
             $(".answer-display").append("<p></p>")
         }
     });//btn start closing tag
