@@ -43,7 +43,7 @@ var questions = [
             b: "by the number of rings from the middle",
             c: "by how many feet tall the tree is"
         },
-        correctAnswer: "a",
+        correctAnswer: "b",
     },
 ];
 var rightAnswerCounter = 0;
@@ -72,7 +72,7 @@ $(window).on("load", function () {
     $(".btn-start").click(function () {
         var gameOn = true
         hideIntro()
-        answer = questions[questionCounter].correctAnswer
+        // answer = questions[questionCounter].correctAnswer
         displayQuestion(questionCounter)
 
         // function for the timer that counts down once the button is clicked, then if user doesnt answer in time they get it wrong and the next question is shown
