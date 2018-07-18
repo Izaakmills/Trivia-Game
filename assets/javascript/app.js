@@ -57,11 +57,21 @@ var numCorrect = 0
 var gameOn = false;
 // timer object
 var timer = {
+    seconds:0,
+
     start: function () {
-        if (!timerRunning) {
-            timerRunning = true
+        // if (gameOn) {
             timerID = setInterval(timer.count, 1000)
-        }
+            $(".timer").text(timer.seconds);
+            console.log(timer.seconds)
+        // }
+    },
+    count: function (){
+        timer.seconds++
+    },
+    reset: function() {
+        timer.seconds = 0;
+        $(".timer").text(timer.seconds);
     }
 }
 var num= Object.keys(questions)
@@ -74,6 +84,8 @@ $(window).on("load", function () {
         hideIntro()
         // answer = questions[questionCounter].correctAnswer
         displayQuestion(questionCounter)
+        timer.start()
+        timer.count()
 
         // function for the timer that counts down once the button is clicked, then if user doesnt answer in time they get it wrong and the next question is shown
 
@@ -119,15 +131,16 @@ $(window).on("load", function () {
                         showResult("Drats, wrong answer...")
                     }
                 }
+                timer.reset()
         };
         // shows user whether or not they get the question right
-        function showResult(result){
-        $(".answer-display").empty()
-        $(".prompt").html("<div>"+ result+"</div>")
-        $(".btn-start").html("<p><button type='button' class='btn btn-primary btn-lg btn-start'>Next Question</button></p>")
-        questionCounter = questionCounter + 1;
-        $(".btn-start").css("display","");
-        }
+        function showResult(result) {
+            $(".answer-display").empty()
+            $(".prompt").html("<div>"+ result+"</div>")
+            $(".btn-start").html("<p><button type='button' class='btn btn-primary btn-lg btn-start'>Next Question</button></p>")
+            questionCounter = questionCounter + 1;
+            $(".btn-start").css("display","");
+            }
 
         // hides start button when game is in progress
         function hideIntro() {
@@ -140,6 +153,7 @@ $(window).on("load", function () {
             $(".answer-display").html("<p> Correct Answers: " + numCorrect+"</p>")
             $(".answer-display").append("<p> Your winning percentage "+ percentage+"%</p>")
             $(".answer-display").append("<p></p>")
+            $(".timer").css("display","none")
         }
     });//btn start closing tag
 
