@@ -10,3 +10,6 @@
 * if the user fails the answer the question within the alloted timeframe then the question is marked as wrong and the next question is displayed and a new timer started
 * In the end the user is shown a summary of their score including how many they got wrong and how many they got right
 
+# Link to website 
+https://upload.wikimedia.org/wikipedia/en/2/27/Trivia.png
+
