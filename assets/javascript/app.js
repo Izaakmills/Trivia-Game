@@ -55,9 +55,11 @@ var answer = "";
 var answerLogged = false;
 var numCorrect = 0
 var gameOn = false;
+var timeRunOut = false;
 // timer object
 var timer = {
     seconds:0,
+    limit:16,
 
     start: function () {
         // if (gameOn) {
@@ -67,9 +69,16 @@ var timer = {
         // }
     },
     count: function (){
+        if(timer.seconds < 16){
         timer.seconds++
+        $(".timer").text(timer.limit-timer.seconds);
+        } else {
+            timer.reset()
+            showResult("ran out of time!")
+        }
     },
     reset: function() {
+        clearInterval(timerID)
         timer.seconds = 0;
         $(".timer").text(timer.seconds);
     }
@@ -77,6 +86,16 @@ var timer = {
 var num= Object.keys(questions)
 var numQuestions = num.length
 $(window).on("load", function () {
+
+
+    // shows user whether or not they get the question right
+    function showResult(result) {
+    $(".answer-display").empty()
+    $(".prompt").html("<div>"+ result+"</div>")
+    $(".btn-start").html("<p><button type='button' class='btn btn-primary btn-lg btn-start'>Next Question</button></p>")
+    questionCounter = questionCounter + 1;
+    $(".btn-start").css("display","");
+    }
 
     // start button click initiates gameplay
     $(".btn-start").click(function () {
@@ -133,15 +152,7 @@ $(window).on("load", function () {
                 }
                 timer.reset()
         };
-        // shows user whether or not they get the question right
-        function showResult(result) {
-            $(".answer-display").empty()
-            $(".prompt").html("<div>"+ result+"</div>")
-            $(".btn-start").html("<p><button type='button' class='btn btn-primary btn-lg btn-start'>Next Question</button></p>")
-            questionCounter = questionCounter + 1;
-            $(".btn-start").css("display","");
-            }
-
+   
         // hides start button when game is in progress
         function hideIntro() {
             $(".btn-start").css("display", "None")
