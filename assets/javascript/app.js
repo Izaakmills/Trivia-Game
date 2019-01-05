@@ -161,7 +161,7 @@ $(document).ready(function() {
 
         function finalScreen() {
             percentage = (numCorrect / numQuestions) * 100
-            $(".prompt").html("<h2> You have completed the tree quiz good job</h2>")
+            $(".prompt").html("<h2> You have completed the tree quiz!</h2>")
             $(".answer-display").html("<p> Correct Answers: " + numCorrect + "</p>")
             $(".answer-display").append("<p> Your winning percentage " + percentage + "%</p>")
             $(".answer-display").append("<p></p>")
